@@ -4,8 +4,8 @@ class Solution {
         int revNum=0;
         while(x>0){
             int lastdig=x%10;
-            x=x/10;
             revNum=(revNum*10)+lastdig;
+            x=x/10;
         }
         if(revNum==N) return true;
         else return false;
