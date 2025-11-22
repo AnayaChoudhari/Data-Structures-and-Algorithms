@@ -6,14 +6,16 @@ class Solution {
                 cleaned.append(Character.toLowerCase(c));
             }
         }
-        return isPalindromeHelper(0, cleaned.toString());
+        return isPalindromeHelper(0, cleaned.toString(), cleaned.length()-1);
     }
-    private boolean isPalindromeHelper(int i, String s){
-        int n=s.length();
-        if(i>=n/2) return true;
-        if(s.charAt(i)!=s.charAt(n-i-1)){
+    private boolean isPalindromeHelper(int left, String s, int right){
+    while(left<right){
+        if(s.charAt(left)!=s.charAt(right)){
             return false;
         }
-        return isPalindromeHelper(i+1,s);
+        left++;
+        right--;
+    }
+    return true;
     }
 }
