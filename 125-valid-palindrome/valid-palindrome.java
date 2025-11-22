@@ -1,21 +1,30 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        StringBuilder cleaned=new StringBuilder();
-        for(char c:s.toCharArray()){
-            if(Character.isLetterOrDigit(c)){
-                cleaned.append(Character.toLowerCase(c));
-            }
+        int left=0, right=s.length()-1;
+
+        while(left<right){
+            int a=s.charAt(left);
+            int b=s.charAt(right);
+        
+        //convert to lowercase
+        if(a>='A' && a<='Z') a=(char)(a+32);
+        if(b>='A' && b<='Z') b=(char)(b+32);
+
+        //skip non-alphanumeric
+        if(!((a>='a' && a<='z') || (a>='0' && a<='9'))){
+            left++;
+            continue;
         }
-        return isPalindromeHelper(0, cleaned.toString(), cleaned.length()-1);
-    }
-    private boolean isPalindromeHelper(int left, String s, int right){
-    while(left<right){
-        if(s.charAt(left)!=s.charAt(right)){
-            return false;
+
+        if(!((b>='a' && b<='z') || (b>='0' && b<='9'))){
+            right--;
+            continue;
         }
+        if(a!=b) return false;
         left++;
         right--;
-    }
-    return true;
-    }
+        } 
+        return true;
+    }  
+
 }
